@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "^16.1.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "cra-template-typescript": "1.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "web-vitals": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/jest": "^29.5.14",
+    "@types/testing-library__react": "^10.2.0"
   }
 }
