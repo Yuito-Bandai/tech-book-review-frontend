@@ -1,0 +1,21 @@
+/* src/pages/HomePage.css */
+
+/* 全体の背景色を設定 */
+body {
+  background-color: #f2e7d9;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  /* フォントの設定（必要に応じて） */
+}
+
+/* ホームページの内容に対するスタイル */
+.homepage-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.homepage-title {
+  color: #2c3e50;
+  font-size: 2rem;
+}

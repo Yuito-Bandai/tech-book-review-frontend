@@ -1,0 +1,31 @@
+/* src/components/BookList.css */
+.book-list-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.book-list-title {
+  color: #333;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-list-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+
+.book-list-item:hover {
+  background-color: #e0e0e0;
+}
