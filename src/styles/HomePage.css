@@ -1,15 +1,68 @@
-/* src/pages/HomePage.css */
-
 /* 全体の背景色を設定 */
 body {
   background-color: #f2e7d9;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  /* フォントの設定（必要に応じて） */
 }
 
-/* ホームページの内容に対するスタイル */
+/* ナビゲーションバー */
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+  /* デフォルトでは非表示 */
+}
+
+/* メニュー */
+.menu {
+  display: flex;
+  gap: 15px;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.menu.open {
+  display: flex;
+  /* ハンバーガーメニューが開いたときの状態 */
+}
+
+/* ホームページの内容 */
 .homepage-container {
   text-align: center;
   padding: 20px;
@@ -18,4 +71,35 @@ body {
 .homepage-title {
   color: #2c3e50;
   font-size: 2rem;
+  margin: 10px 0;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+    /* 小画面では表示 */
+  }
+
+  .menu {
+    display: none;
+    /* デフォルトでは非表示 */
+    flex-direction: column;
+    gap: 10px;
+    background-color: #2c3e50;
+    padding: 10px;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    border-radius: 5px;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu a {
+    font-size: 1.2rem;
+    text-align: center;
+  }
 }

@@ -7,19 +7,30 @@ const BookList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // 検索フォームの状態
+  const [searchTitle, setSearchTitle] = useState<string>('');
+  const [searchAuthor, setSearchAuthor] = useState<string>('');
+
   useEffect(() => {
     const loadBooks = async () => {
       try {
-        const data = await fetchBooks();
-        setBooks(data);
+        const params = new URLSearchParams();
+
+        if (searchTitle) params.append('title', searchTitle);
+        if (searchAuthor) params.append('author', searchAuthor);
+
+        // フィルタリングされた書籍を取得
+        const response = await fetchBooks(params);
+        setBooks(response);
       } catch (err) {
         setError('Failed to fetch books');
       } finally {
         setLoading(false);
       }
     };
+
     loadBooks();
-  }, []);
+  }, [searchTitle, searchAuthor]); // 検索条件が変更されるたびに再取得
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -27,10 +38,28 @@ const BookList: React.FC = () => {
   return (
     <div className="book-list-container">
       <h1 className="book-list-title">Book List</h1>
+
+      {/* 検索フォーム */}
+      <div className="search-form">
+        <input
+          type="text"
+          placeholder="Search by title"
+          value={searchTitle}
+          onChange={(e) => setSearchTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Search by author"
+          value={searchAuthor}
+          onChange={(e) => setSearchAuthor(e.target.value)}
+        />
+      </div>
+
       <ul className="book-list">
         {books.map((book) => (
           <li key={book.id} className="book-list-item">
-            <span>{book.title} by {book.author}</span>
+            <div className="book-title">タイトル: {book.title}</div>
+            <div className="book-author">著者: {book.author}</div>
           </li>
         ))}
       </ul>
