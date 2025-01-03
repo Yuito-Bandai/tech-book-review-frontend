@@ -1,31 +1,45 @@
-/* src/components/BookList.css */
+/* Book List Container */
 .book-list-container {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Title */
 .book-list-title {
-  color: #333;
-  font-size: 1.8rem;
-  text-align: center;
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
+/* List */
 .book-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
+/* List Item */
 .book-list-item {
-  background-color: #f9f9f9;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.book-list-item:hover {
-  background-color: #e0e0e0;
+/* Title and Author Blocks */
+.book-title {
+  font-weight: bold;
+  color: #34495e;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  /* タイトルと著者の間隔 */
+}
+
+.book-author {
+  color: #7f8c8d;
+  font-size: 1rem;
 }
