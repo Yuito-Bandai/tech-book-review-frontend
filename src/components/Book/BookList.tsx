@@ -7,7 +7,6 @@ const BookList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 検索フォームの状態
   const [searchTitle, setSearchTitle] = useState<string>('');
   const [searchAuthor, setSearchAuthor] = useState<string>('');
 
@@ -19,7 +18,6 @@ const BookList: React.FC = () => {
         if (searchTitle) params.append('title', searchTitle);
         if (searchAuthor) params.append('author', searchAuthor);
 
-        // フィルタリングされた書籍を取得
         const response = await fetchBooks(params);
         setBooks(response);
       } catch (err) {

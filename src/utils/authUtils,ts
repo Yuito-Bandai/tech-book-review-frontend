@@ -1,0 +1,21 @@
+interface AuthData {
+  user: {
+    id: number;
+    username: string;
+    email: string;
+  };
+  token: string;
+}
+
+export const saveAuthData = (authData: AuthData) => {
+  localStorage.setItem('auth', JSON.stringify(authData));
+};
+
+export const getAuthData = (): AuthData | null => {
+  const data = localStorage.getItem('auth');
+  return data ? JSON.parse(data) : null;
+};
+
+export const clearAuthData = () => {
+  localStorage.removeItem('auth');
+};
