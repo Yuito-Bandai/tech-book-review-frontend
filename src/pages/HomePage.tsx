@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import BookList from '../components/Book/BookList.tsx';
 import '../styles/HomePage.css';
 
-const HomePage: React.FC = () => {
+interface HomePageProps {
+  onLogout: () => void;  // ログアウト関数を受け取る
+}
+
+const HomePage: React.FC<HomePageProps> = ({ onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -23,6 +27,7 @@ const HomePage: React.FC = () => {
               <li><a href="#reviews">Reviews</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><button onClick={onLogout}>Logout</button></li>  {/* ログアウトボタン */}
             </ul>
           </nav>
         </div>
