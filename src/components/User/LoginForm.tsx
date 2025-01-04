@@ -16,7 +16,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     e.preventDefault();
 
     try {
-      // APIにログインリクエストを送信
       const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: {
@@ -29,15 +28,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
         throw new Error('Invalid credentials');
       }
 
-      // レスポンスからトークンを取得
       const data = await response.json();
-
-      // トークンをlocalStorageに保存
       localStorage.setItem('token', data.token);
-
-      // ログイン成功時に親コンポーネントに通知
       onLoginSuccess();
     } catch (err) {
+      console.error("Login error: ", err);  // エラーの詳細をログに出力
       setError('Invalid email or password');
     }
   };
