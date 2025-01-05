@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchBook } from '../../api/books.ts';
+import '../../styles/Book/BookDetail.css';
 
 const BookDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // URLのパラメータからIDを取得
@@ -28,10 +29,10 @@ const BookDetails: React.FC = () => {
 
   return (
     <div className="book-details-container">
-      <h1>Book Details</h1>
+      <h1>本の詳細</h1>
       {book ? (
         <>
-          <div className="book-title">タイトル: {book.title}</div>
+          <div className="book-title">{book.title}</div>
           <div className="book-author">著者: {book.author}</div>
           <div className="book-description">説明: {book.description}</div>
         </>
