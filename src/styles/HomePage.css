@@ -18,7 +18,7 @@
 .hamburger-menu {
   display: none;
   /* 初期状態では非表示 */
-  font-size: 2rem;
+  font-size: 1.3rem;
   /* ハンバーガーメニューのアイコンサイズ */
   background: none;
   border: none;
