@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../api/books.ts';
 import '../../styles/Book/BookList.css';
 
@@ -35,19 +36,19 @@ const BookList: React.FC = () => {
 
   return (
     <div className="book-list-container">
-      <h1 className="book-list-title">Book List</h1>
+      <h1 className="book-list-title">本の一覧</h1>
 
       {/* 検索フォーム */}
       <div className="search-form">
         <input
           type="text"
-          placeholder="Search by title"
+          placeholder="タイトルから探す"
           value={searchTitle}
           onChange={(e) => setSearchTitle(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Search by author"
+          placeholder="著者から探す"
           value={searchAuthor}
           onChange={(e) => setSearchAuthor(e.target.value)}
         />
@@ -56,8 +57,10 @@ const BookList: React.FC = () => {
       <ul className="book-list">
         {books.map((book) => (
           <li key={book.id} className="book-list-item">
-            <div className="book-title">タイトル: {book.title}</div>
-            <div className="book-author">著者: {book.author}</div>
+            <Link to={`/books/${book.id}`}>
+              <div className="book-title">タイトル: {book.title}</div>
+              <div className="book-author">著者: {book.author}</div>
+            </Link>
           </li>
         ))}
       </ul>
