@@ -58,7 +58,7 @@ const BookList: React.FC = () => {
         {books.map((book) => (
           <li key={book.id} className="book-list-item">
             <Link to={`/books/${book.id}`}>
-              <div className="book-title">タイトル: {book.title}</div>
+              <div className="book-title"> {book.title}</div>
               <div className="book-author">著者: {book.author}</div>
             </Link>
           </li>

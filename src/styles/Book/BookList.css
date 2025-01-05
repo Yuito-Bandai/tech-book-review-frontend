@@ -60,7 +60,12 @@
 .book-title {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
+  color: #75769a;
+}
+
+.book-title::before {
+  content: "タイトル: ";
+  color: #8a8a82a1;
 }
 
 .book-author {
