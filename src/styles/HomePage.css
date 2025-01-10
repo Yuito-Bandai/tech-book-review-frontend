@@ -1,0 +1,90 @@
+/* src/styles/HomePage.css */
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homepage-title {
+  font-size: 1.5rem;
+}
+
+.hamburger-menu {
+  display: none;
+  /* 初期状態では非表示 */
+  font-size: 1.3rem;
+  /* ハンバーガーメニューのアイコンサイズ */
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* メニューアイコンがクリックされたときにメニューが開くためのスタイル */
+.menu {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu li {
+  margin-left: 1rem;
+}
+
+.menu li a,
+.menu li button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.menu li a:hover,
+.menu li button:hover {
+  text-decoration: underline;
+}
+
+/* ハンバーガーメニュー用（レスポンシブ） */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+    /* 画面が小さくなったときに表示 */
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu li {
+    margin: 0.5rem 0;
+  }
+}
+
+/* 画面が広い場合でもメニューを表示 */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none;
+    /* ハンバーガーメニューを非表示 */
+  }
+
+  .menu {
+    display: flex;
+    /* メニューを横並びで表示 */
+  }
+}
