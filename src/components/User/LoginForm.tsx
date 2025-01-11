@@ -19,6 +19,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       // APIにログインリクエストを送信
       const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
