@@ -46,8 +46,9 @@ export const postReview = async (bookId: number, content: string, rating: number
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,  // トークンをAuthorizationヘッダーに追加
+      'Authorization': `Bearer ${token}`,  // トークンをAuthorizationヘッダーに追加(認証情報が必要)
     },
+    credentials: 'include',
     body: JSON.stringify({
       review: {
         content: content,
