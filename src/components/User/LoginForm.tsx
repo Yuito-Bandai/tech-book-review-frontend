@@ -19,10 +19,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       // APIにログインリクエストを送信
       const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'include',//認証トークン使ってるからいらないかも
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`//nullで問題ない
         },
         body: JSON.stringify({ email, password }),
       });

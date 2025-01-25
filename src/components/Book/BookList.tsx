@@ -59,7 +59,11 @@ const BookList: React.FC = () => {
           <li key={book.id} className="book-list-item">
             <Link to={`/books/${book.id}`}>
               <div className="book-title"> {book.title}</div>
-              <div className="book-author">著者: {book.author}</div>
+              <div className="book-author">
+                {book.authors && book.authors.length > 0
+                  ? `著者: ${book.authors.map((author) => author.name).join(', ')}`
+                  : "著者情報なし"}
+              </div>
             </Link>
           </li>
         ))}

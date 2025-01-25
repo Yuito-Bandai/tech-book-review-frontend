@@ -44,11 +44,11 @@ export const postReview = async (bookId: number, content: string, rating: number
 
   const response = await fetch(`${API_URL}/books/${bookId}/reviews`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,  // トークンをAuthorizationヘッダーに追加(認証情報が必要)
     },
-    credentials: 'include',
     body: JSON.stringify({
       review: {
         content: content,

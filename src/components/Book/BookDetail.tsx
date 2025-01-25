@@ -63,7 +63,7 @@ const BookDetails: React.FC = () => {
       {book ? (
         <>
           <div className="book-title">{book.title}</div>
-          <div className="book-author">著者: {book.author}</div>
+          <div className="book-author">著者: {book.authors.map((author: any) => author.name).join(', ')}</div> {/* 著者名を表示 */}
           <div className="book-description">説明: {book.description}</div>
 
           <h2>レビュー</h2>
