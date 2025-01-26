@@ -38,6 +38,23 @@
   border-color: #007BFF;
 }
 
+.search-form button {
+  padding: 10px 20px;
+  width: 100px;
+  height: 40px;
+  background-color: #0eb145;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+  background-color: #0a9d3e;
+}
+
 .book-list {
   list-style: none;
   padding: 0;
@@ -74,6 +91,19 @@
   margin-top: 5px;
 }
 
+.book-published-date,
+.book-publisher {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 3px;
+}
+
+.book-description {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
 .book-list-item a {
   text-decoration: none;
   color: inherit;
@@ -81,4 +111,12 @@
 
 .book-list-item a:hover .book-title {
   color: #007BFF;
+}
+
+.book-thumbnail {
+  max-width: 120px;
+  /* 画像の最大幅を120pxに設定 */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
 }

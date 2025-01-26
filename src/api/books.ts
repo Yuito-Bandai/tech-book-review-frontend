@@ -5,7 +5,17 @@ const API_URL = process.env.REACT_APP_API_URL;
 // 書籍のリストを取得する
 export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchParams()) => {
   const response = await axios.get(`${API_URL}/books?${searchParams.toString()}`);
-  return response.data;
+
+  return response.data.map((item: any) => ({
+    id: item.id,
+    title: item.title || 'タイトル不明',
+    author: item.author || '著者情報なし',
+    description: item.description || '説明情報なし',
+    publishedDate: item.published_date || '出版日不明',
+    publisher: item.publisher || '出版社不明',
+    thumbnail: item.image_link || null,
+    infoLink: item.info_link || null
+  }));
 };
 
 // 特定の書籍の詳細を取得する
