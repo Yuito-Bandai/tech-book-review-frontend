@@ -16,8 +16,12 @@ const BookDetails: React.FC = () => {
     // 本の詳細情報をロードする関数
     const loadBook = async () => {
       try {
-        const response = await fetchBook(Number(id)); // IDを渡して本の詳細を取得
-        setBook(response);
+        if (id) {
+          const response = await fetchBook(id); // IDを渡して本の詳細を取得
+          setBook(response);
+        } else {
+          setError('Book ID is undefined');
+        }
       } catch (err) {
         setError('Failed to fetch book details');
       } finally {
@@ -28,8 +32,12 @@ const BookDetails: React.FC = () => {
     // レビューをロードする関数
     const loadReviews = async () => {
       try {
-        const response = await fetchReviews(Number(id)); // レビューを取得
-        setReviews(response);
+        if (id) {
+          const response = await fetchReviews(id); // レビューを取得
+          setReviews(response);
+        } else {
+          setError('Book ID is undefined');
+        }
       } catch (err) {
         setError('Failed to fetch reviews');
       }
@@ -63,7 +71,9 @@ const BookDetails: React.FC = () => {
       {book ? (
         <>
           <div className="book-title">{book.title}</div>
-          <div className="book-author">著者: {book.authors.map((author: any) => author.name).join(', ')}</div> {/* 著者名を表示 */}
+          <div className="book-author">
+            著者: {Array.isArray(book.authors) && book.authors.length > 0 ? book.authors.map((author: any) => author.name).join(', ') : '著者情報なし'}
+          </div>
           <div className="book-description">説明: {book.description}</div>
 
           <h2>レビュー</h2>

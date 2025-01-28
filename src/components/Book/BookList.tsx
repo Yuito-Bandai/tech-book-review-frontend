@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../api/books.ts';
 import '../../styles/Book/BookList.css';
@@ -10,13 +10,30 @@ const BookList: React.FC = () => {
   const [searchTitle, setSearchTitle] = useState('');
   const [searchAuthor, setSearchAuthor] = useState('');
 
+  // 初期データの取得
+  useEffect(() => {
+    const fetchInitialBooks = async () => {
+      try {
+        setLoading(true);
+        const initialBooks = await fetchBooks(new URLSearchParams()); // 初期データを取得
+        setBooks(initialBooks);
+        setError(null);
+      } catch (err) {
+        setError('Failed to fetch initial books');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInitialBooks();
+  }, []);
+
   // 検索を実行する関数
   const searchBooks = async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams();
 
-      // タイトルと著者名の両方が入力されている場合、両方をqueryパラメータとして送信
       if (searchTitle || searchAuthor) {
         let query = '';
         if (searchTitle) query += `intitle:${searchTitle}`;
@@ -68,7 +85,6 @@ const BookList: React.FC = () => {
               <Link to={`/books/${book.id}`}>
                 <div className="book-title">{book.title}</div>
                 <div className="book-author">
-                  {/* 著者情報がある場合、それを表示、ない場合は「著者情報なし」を表示 */}
                   {book.author ? book.author.split(',').join(', ') : '著者情報なし'}
                 </div>
                 <div className="book-published-date">出版日: {book.publishedDate || '不明'}</div>

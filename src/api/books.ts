@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 // 書籍のリストを取得する
 export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchParams()) => {
   const response = await axios.get(`${API_URL}/books?${searchParams.toString()}`);
-
+  console.log("API Response:", response.data); // デバッグ用ログ
   return response.data.map((item: any) => ({
     id: item.id,
     title: item.title || 'タイトル不明',
