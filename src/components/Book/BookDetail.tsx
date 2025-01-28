@@ -53,7 +53,11 @@ const BookDetails: React.FC = () => {
 
     try {
       // レビューを投稿時にcontentとratingを送信
-      await postReview(Number(id), newReview, rating);
+      if (id) {
+        await postReview(id, newReview, rating);
+      } else {
+        setError('Book ID is undefined');
+      }
       setReviews([...reviews, { content: newReview, rating }]); // 送信後、レビューリストに追加
       setNewReview(''); // フォームをクリア
       setRating(1); // 評価をリセット

@@ -19,7 +19,7 @@ export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchPa
 };
 
 // 特定の書籍の詳細を取得する
-export const fetchBook = async (id: number) => {
+export const fetchBook = async (id: string) => {
   const response = await axios.get(`${API_URL}/books/${id}`);
   return response.data;
 };
@@ -43,13 +43,13 @@ export const deleteBook = async (id: number) => {
 };
 
 // 特定の書籍に対するレビューを取得する
-export const fetchReviews = async (bookId: number) => {
+export const fetchReviews = async (bookId: string) => {
   const response = await axios.get(`${API_URL}/books/${bookId}/reviews`);
   return response.data;
 };
 
 // 書籍に新しいレビューを投稿する
-export const postReview = async (bookId: number, content: string, rating: number) => {
+export const postReview = async (bookId: string, content: string, rating: number) => {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${API_URL}/books/${bookId}/reviews`, {
