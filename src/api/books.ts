@@ -6,10 +6,14 @@ const API_URL = process.env.REACT_APP_API_URL;
 export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchParams()) => {
   const response = await axios.get(`${API_URL}/books?${searchParams.toString()}`);
   console.log("API Response:", response.data); // デバッグ用ログ
+
   return response.data.map((item: any) => ({
     id: item.id,
     title: item.title || 'タイトル不明',
-    author: item.author || '著者情報なし',
+    // authorsが配列である場合、それを文字列として処理
+    author: item.authors && Array.isArray(item.authors)
+      ? item.authors.map((author: { name: string }) => author.name).join(', ')
+      : item.author || '著者情報なし',
     description: item.description || '説明情報なし',
     description_short: item.description_short || '説明情報なし',
     publishedDate: item.published_date || '出版日不明',
@@ -27,7 +31,7 @@ export const fetchBook = async (id: string) => {
   return {
     id: item.id,
     title: item.title || 'タイトル不明',
-    author: item.author || '著者情報なし',
+    author: item.authors && Array.isArray(item.authors) ? item.authors.map((author: { name: string }) => author.name).join(', ') : item.author || '著者情報なし',
     description: item.description || '説明情報なし',
     description_short: item.description_short || '説明情報なし',
     publishedDate: item.published_date || '出版日不明',

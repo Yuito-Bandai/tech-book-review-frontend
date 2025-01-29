@@ -81,7 +81,7 @@ const BookDetails: React.FC = () => {
             <div className="book-info">
               <div className="book-title">{book.title}</div>
               <div className="book-author">
-                著者: {Array.isArray(book.authors) && book.authors.length > 0 ? book.authors.map((author: any) => author.name).join(', ') : '著者情報なし'}
+                著者: {book.author ? book.author.split(',').join(', ') : '著者情報なし'}
               </div>
               <div className="book-description">説明: {book.description || '説明情報なし'}</div>
             </div>
