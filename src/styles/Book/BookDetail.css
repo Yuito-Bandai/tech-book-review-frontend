@@ -1,48 +1,57 @@
-.book-details-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.book-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-.book-details-container h1 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
+.book-thumbnail {
+  width: 150px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.book-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2c3e50;
+.book-info {
+  flex: 1;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   margin-bottom: 10px;
 }
 
-.book-author {
-  font-size: 1.2rem;
-  color: #7f8c8d;
-  margin-bottom: 15px;
-}
-
-.book-description {
+.review-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 1rem;
-  color: #34495e;
-  line-height: 1.6;
-  margin-top: 10px;
 }
 
-p {
+.review-form select {
+  padding: 5px;
   font-size: 1rem;
-  color: #e74c3c;
-  text-align: center;
-  margin-top: 20px;
+  margin-left: 5px;
 }
 
-.loading {
-  font-size: 1.2rem;
-  color: #3498db;
-  text-align: center;
+.review-form button {
+  background-color: #0eb145;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.review-form button:hover {
+  background-color: #089632;
 }

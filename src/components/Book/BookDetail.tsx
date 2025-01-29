@@ -4,20 +4,19 @@ import { fetchBook, fetchReviews, postReview } from '../../api/books.ts';
 import '../../styles/Book/BookDetail.css';
 
 const BookDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // URLのパラメータからIDを取得
+  const { id } = useParams<{ id: string }>();
   const [book, setBook] = useState<any>(null);
-  const [reviews, setReviews] = useState<any[]>([]); // レビューのリスト
-  const [newReview, setNewReview] = useState<string>(''); // ユーザーが入力した新しいレビュー
-  const [rating, setRating] = useState<number>(1); // ユーザーが選択した評価
+  const [reviews, setReviews] = useState<any[]>([]);
+  const [newReview, setNewReview] = useState<string>('');
+  const [rating, setRating] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // 本の詳細情報をロードする関数
     const loadBook = async () => {
       try {
         if (id) {
-          const response = await fetchBook(id); // IDを渡して本の詳細を取得
+          const response = await fetchBook(id);
           setBook(response);
         } else {
           setError('Book ID is undefined');
@@ -28,17 +27,15 @@ const BookDetails: React.FC = () => {
         setLoading(false);
       }
     };
-
-    loadBook(); // 本の詳細情報を最初にロード
+    loadBook();
   }, [id]);
 
-  // 本がロードされたら、レビューをロードする
   useEffect(() => {
     if (book) {
       const loadReviews = async () => {
         try {
           if (id) {
-            const response = await fetchReviews(id); // レビューを取得
+            const response = await fetchReviews(id);
             setReviews(response);
           } else {
             setError('Book ID is undefined');
@@ -47,25 +44,23 @@ const BookDetails: React.FC = () => {
           setError('Failed to fetch reviews');
         }
       };
-
-      loadReviews(); // 本が取得された後にレビューを取得
+      loadReviews();
     }
-  }, [book, id]); // `book` が更新されたときにレビューをロード
+  }, [book, id]);
 
   const handleReviewSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (newReview.trim() === '') return; // 空のレビューを送信しない
+    if (newReview.trim() === '') return;
 
     try {
-      // レビューを投稿時にcontentとratingを送信
       if (id) {
         await postReview(id, newReview, rating);
       } else {
         setError('Book ID is undefined');
       }
-      setReviews([...reviews, { content: newReview, rating }]); // 送信後、レビューリストに追加
-      setNewReview(''); // フォームをクリア
-      setRating(1); // 評価をリセット
+      setReviews([...reviews, { content: newReview, rating }]);
+      setNewReview('');
+      setRating(1);
     } catch (err) {
       setError('Failed to post review');
     }
@@ -79,17 +74,24 @@ const BookDetails: React.FC = () => {
       <h1>本の詳細</h1>
       {book ? (
         <>
-          <div className="book-title">{book.title}</div>
-          <div className="book-author">
-            著者: {Array.isArray(book.authors) && book.authors.length > 0 ? book.authors.map((author: any) => author.name).join(', ') : '著者情報なし'}
+          <div className="book-header">
+            {book.thumbnail && (
+              <img src={book.thumbnail} alt={book.title} className="book-thumbnail" />
+            )}
+            <div className="book-info">
+              <div className="book-title">{book.title}</div>
+              <div className="book-author">
+                著者: {Array.isArray(book.authors) && book.authors.length > 0 ? book.authors.map((author: any) => author.name).join(', ') : '著者情報なし'}
+              </div>
+              <div className="book-description">説明: {book.description || '説明情報なし'}</div>
+            </div>
           </div>
-          <div className="book-description">説明: {book.description}</div>
 
           <h2>レビュー</h2>
           {reviews.length > 0 ? (
-            <ul>
+            <ul className="review-list">
               {reviews.map((review, index) => (
-                <li key={index}>
+                <li key={index} className="review-item">
                   <div>評価: {review.rating}</div>
                   <div>{review.content}</div>
                 </li>
@@ -100,7 +102,7 @@ const BookDetails: React.FC = () => {
           )}
 
           <h3>レビューを投稿する</h3>
-          <form onSubmit={handleReviewSubmit}>
+          <form onSubmit={handleReviewSubmit} className="review-form">
             <textarea
               value={newReview}
               onChange={(e) => setNewReview(e.target.value)}
@@ -111,18 +113,16 @@ const BookDetails: React.FC = () => {
             <div>
               <label>評価:</label>
               <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
+                {[1, 2, 3, 4, 5].map((num) => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
               </select>
             </div>
             <button type="submit">投稿</button>
           </form>
         </>
       ) : (
-        <p>Book not found</p>
+        <p>本が見つかりませんでした。</p>
       )}
     </div>
   );

@@ -22,8 +22,21 @@ export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchPa
 // 特定の書籍の詳細を取得する
 export const fetchBook = async (id: string) => {
   const response = await axios.get(`${API_URL}/books/${id}`);
-  return response.data;
+  const item = response.data;
+
+  return {
+    id: item.id,
+    title: item.title || 'タイトル不明',
+    author: item.author || '著者情報なし',
+    description: item.description || '説明情報なし',
+    description_short: item.description_short || '説明情報なし',
+    publishedDate: item.published_date || '出版日不明',
+    publisher: item.publisher || '出版社不明',
+    thumbnail: item.image_link || null,
+    infoLink: item.info_link || null
+  };
 };
+
 
 // 新しい書籍を作成する
 export const createBook = async (bookData: { title: string; author: string; categoryId: number; tagIds: number[] }) => {
