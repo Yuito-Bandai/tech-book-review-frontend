@@ -1,3 +1,15 @@
+## 以下のurlでデプロイしてあります
+
+https://tech-book-review-frontend.vercel.app
+
+ログインは以下を使用してください🙇
+
+username: "alice", email: "alice@example.com", password: "password1234" 
+
+username: "bob", email: "bob@example.com", password: "password1235
+
+username: "charlie", email: "charlie@example.com", password: "password1236"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
