@@ -16,8 +16,12 @@ const BookDetails: React.FC = () => {
     // 本の詳細情報をロードする関数
     const loadBook = async () => {
       try {
-        const response = await fetchBook(Number(id)); // IDを渡して本の詳細を取得
-        setBook(response);
+        if (id) {
+          const response = await fetchBook(id); // IDを渡して本の詳細を取得
+          setBook(response);
+        } else {
+          setError('Book ID is undefined');
+        }
       } catch (err) {
         setError('Failed to fetch book details');
       } finally {
@@ -25,19 +29,28 @@ const BookDetails: React.FC = () => {
       }
     };
 
-    // レビューをロードする関数
-    const loadReviews = async () => {
-      try {
-        const response = await fetchReviews(Number(id)); // レビューを取得
-        setReviews(response);
-      } catch (err) {
-        setError('Failed to fetch reviews');
-      }
-    };
-
-    loadBook();
-    loadReviews();
+    loadBook(); // 本の詳細情報を最初にロード
   }, [id]);
+
+  // 本がロードされたら、レビューをロードする
+  useEffect(() => {
+    if (book) {
+      const loadReviews = async () => {
+        try {
+          if (id) {
+            const response = await fetchReviews(id); // レビューを取得
+            setReviews(response);
+          } else {
+            setError('Book ID is undefined');
+          }
+        } catch (err) {
+          setError('Failed to fetch reviews');
+        }
+      };
+
+      loadReviews(); // 本が取得された後にレビューを取得
+    }
+  }, [book, id]); // `book` が更新されたときにレビューをロード
 
   const handleReviewSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -45,7 +58,11 @@ const BookDetails: React.FC = () => {
 
     try {
       // レビューを投稿時にcontentとratingを送信
-      await postReview(Number(id), newReview, rating);
+      if (id) {
+        await postReview(id, newReview, rating);
+      } else {
+        setError('Book ID is undefined');
+      }
       setReviews([...reviews, { content: newReview, rating }]); // 送信後、レビューリストに追加
       setNewReview(''); // フォームをクリア
       setRating(1); // 評価をリセット
@@ -63,7 +80,9 @@ const BookDetails: React.FC = () => {
       {book ? (
         <>
           <div className="book-title">{book.title}</div>
-          <div className="book-author">著者: {book.author}</div>
+          <div className="book-author">
+            著者: {Array.isArray(book.authors) && book.authors.length > 0 ? book.authors.map((author: any) => author.name).join(', ') : '著者情報なし'}
+          </div>
           <div className="book-description">説明: {book.description}</div>
 
           <h2>レビュー</h2>

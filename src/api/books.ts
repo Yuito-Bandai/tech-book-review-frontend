@@ -5,11 +5,21 @@ const API_URL = process.env.REACT_APP_API_URL;
 // 書籍のリストを取得する
 export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchParams()) => {
   const response = await axios.get(`${API_URL}/books?${searchParams.toString()}`);
-  return response.data;
+  console.log("API Response:", response.data); // デバッグ用ログ
+  return response.data.map((item: any) => ({
+    id: item.id,
+    title: item.title || 'タイトル不明',
+    author: item.author || '著者情報なし',
+    description: item.description || '説明情報なし',
+    publishedDate: item.published_date || '出版日不明',
+    publisher: item.publisher || '出版社不明',
+    thumbnail: item.image_link || null,
+    infoLink: item.info_link || null
+  }));
 };
 
 // 特定の書籍の詳細を取得する
-export const fetchBook = async (id: number) => {
+export const fetchBook = async (id: string) => {
   const response = await axios.get(`${API_URL}/books/${id}`);
   return response.data;
 };
@@ -33,22 +43,22 @@ export const deleteBook = async (id: number) => {
 };
 
 // 特定の書籍に対するレビューを取得する
-export const fetchReviews = async (bookId: number) => {
+export const fetchReviews = async (bookId: string) => {
   const response = await axios.get(`${API_URL}/books/${bookId}/reviews`);
   return response.data;
 };
 
 // 書籍に新しいレビューを投稿する
-export const postReview = async (bookId: number, content: string, rating: number) => {
+export const postReview = async (bookId: string, content: string, rating: number) => {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${API_URL}/books/${bookId}/reviews`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,  // トークンをAuthorizationヘッダーに追加(認証情報が必要)
     },
-    credentials: 'include',
     body: JSON.stringify({
       review: {
         content: content,
