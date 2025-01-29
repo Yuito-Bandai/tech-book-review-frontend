@@ -90,7 +90,7 @@ const BookList: React.FC = () => {
                 <div className="book-published-date">出版日: {book.publishedDate || '不明'}</div>
                 <div className="book-publisher">出版社: {book.publisher || '不明'}</div>
                 <div className="book-description">
-                  <p>{book.description ? book.description : '説明情報なし'}</p>
+                  <p>{book.description_short ? book.description_short : '説明情報なし'}</p>
                 </div>
                 {book.thumbnail && <img src={book.thumbnail} alt={book.title} className="book-thumbnail" />}
               </Link>

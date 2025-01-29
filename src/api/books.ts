@@ -11,6 +11,7 @@ export const fetchBooks = async (searchParams: URLSearchParams = new URLSearchPa
     title: item.title || 'タイトル不明',
     author: item.author || '著者情報なし',
     description: item.description || '説明情報なし',
+    description_short: item.description_short || '説明情報なし',
     publishedDate: item.published_date || '出版日不明',
     publisher: item.publisher || '出版社不明',
     thumbnail: item.image_link || null,
