@@ -29,23 +29,28 @@ const BookDetails: React.FC = () => {
       }
     };
 
-    // レビューをロードする関数
-    const loadReviews = async () => {
-      try {
-        if (id) {
-          const response = await fetchReviews(id); // レビューを取得
-          setReviews(response);
-        } else {
-          setError('Book ID is undefined');
-        }
-      } catch (err) {
-        setError('Failed to fetch reviews');
-      }
-    };
-
-    loadBook();
-    loadReviews();
+    loadBook(); // 本の詳細情報を最初にロード
   }, [id]);
+
+  // 本がロードされたら、レビューをロードする
+  useEffect(() => {
+    if (book) {
+      const loadReviews = async () => {
+        try {
+          if (id) {
+            const response = await fetchReviews(id); // レビューを取得
+            setReviews(response);
+          } else {
+            setError('Book ID is undefined');
+          }
+        } catch (err) {
+          setError('Failed to fetch reviews');
+        }
+      };
+
+      loadReviews(); // 本が取得された後にレビューを取得
+    }
+  }, [book, id]); // `book` が更新されたときにレビューをロード
 
   const handleReviewSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
