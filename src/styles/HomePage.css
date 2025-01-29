@@ -1,90 +1,104 @@
-/* src/styles/HomePage.css */
+/* ナビゲーションバー */
 .navbar {
   background-color: #333;
   color: white;
   padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
+/* ナビバーのレイアウト */
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
+/* タイトル */
 .homepage-title {
+  margin: 0;
   font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
 }
 
+/* ハンバーガーメニューボタン */
 .hamburger-menu {
-  display: none;
-  /* 初期状態では非表示 */
-  font-size: 1.3rem;
-  /* ハンバーガーメニューのアイコンサイズ */
+  display: block;
   background: none;
   border: none;
   color: white;
+  font-size: 1.5rem;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: #0eb145;
+  border-radius: 5px;
+
+  position: absolute;
+  left: 10px;
 }
 
-/* メニューアイコンがクリックされたときにメニューが開くためのスタイル */
+/* メニュー */
 .menu {
-  list-style-type: none;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background-color: #333;
+  width: 150px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* メニューアイテム */
+.menu ul {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu li {
-  margin-left: 1rem;
+  margin: 10px 0;
 }
 
 .menu li a,
 .menu li button {
   color: white;
   text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  line-height: 1.2;
+  padding: 0.5rem;
 }
 
 .menu li a:hover,
 .menu li button:hover {
-  text-decoration: underline;
+  background-color: #555;
+  border-radius: 5px;
 }
 
-/* ハンバーガーメニュー用（レスポンシブ） */
-@media (max-width: 768px) {
-  .hamburger-menu {
-    display: block;
-    /* 画面が小さくなったときに表示 */
-  }
-
-  .menu {
-    display: none;
-    flex-direction: column;
-    margin-top: 1rem;
-  }
-
-  .menu.open {
-    display: flex;
-  }
-
-  .menu li {
-    margin: 0.5rem 0;
-  }
+/* メニューを開いたとき */
+.menu.open {
+  display: flex;
 }
 
-/* 画面が広い場合でもメニューを表示 */
+/* PCのとき */
 @media (min-width: 769px) {
-  .hamburger-menu {
-    display: none;
-    /* ハンバーガーメニューを非表示 */
+  .menu {
+    left: 10px;
+    width: 200px;
   }
 
-  .menu {
-    display: flex;
-    /* メニューを横並びで表示 */
+  .menu ul {
+    flex-direction: column;
   }
 }
