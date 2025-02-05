@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchBook, fetchReviews, postReview } from '../../api/books.ts';
 import '../../styles/Book/BookDetail.css';
+import Header from '../Utils/Header.tsx';
 
-const BookDetails: React.FC = () => {
+interface BookDetailsProps {
+  onLogout: () => void;
+}
+
+const BookDetails: React.FC<BookDetailsProps> = ({ onLogout }) => {
   const { id } = useParams<{ id: string }>();
   const [book, setBook] = useState<any>(null);
   const [reviews, setReviews] = useState<any[]>([]);
@@ -71,13 +76,12 @@ const BookDetails: React.FC = () => {
 
   return (
     <div className="book-details-container">
+      <Header onLogout={onLogout} />
       <h1>本の詳細</h1>
       {book ? (
         <>
           <div className="book-header">
-            {book.thumbnail && (
-              <img src={book.thumbnail} alt={book.title} className="book-thumbnail" />
-            )}
+            {book.thumbnail && <img src={book.thumbnail} alt={book.title} className="book-thumbnail" />}
             <div className="book-info">
               <div className="book-title">{book.title}</div>
               <div className="book-author">
@@ -114,7 +118,9 @@ const BookDetails: React.FC = () => {
               <label>評価:</label>
               <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
                 {[1, 2, 3, 4, 5].map((num) => (
-                  <option key={num} value={num}>{num}</option>
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
                 ))}
               </select>
             </div>
