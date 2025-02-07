@@ -1,4 +1,4 @@
-## 以下のurlでデプロイしてあります
+## 以下のurlでデプロイしてあります（無料プランのサーバーのため、最初のログインに時間がかかると思います🙇🙇）
 
 https://tech-book-review-frontend.vercel.app
 
