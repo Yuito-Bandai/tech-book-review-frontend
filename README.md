@@ -3,6 +3,7 @@
 https://tech-book-review-frontend.vercel.app
 
 ログインは以下を使用してください🙇
+お手数おかけします。
 
 username: "alice", email: "alice@example.com", password: "password1234" 
 
