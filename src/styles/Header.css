@@ -1,0 +1,129 @@
+/* ナビゲーションバー */
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* ナビバーのレイアウト */
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* タイトル */
+.homepage-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+/* ハンバーガーメニューボタン */
+.hamburger-menu {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: #0eb145;
+  border-radius: 5px;
+
+  position: absolute;
+  left: 10px;
+}
+
+/* メニュー */
+.menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background-color: #333;
+  width: 150px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* メニューアイテム */
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin: 10px 0;
+}
+
+.menu li a,
+.menu li button {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+}
+
+.menu li a:hover,
+.menu li button:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* メニューを開いたとき */
+.menu.open {
+  display: flex;
+}
+
+/* PCのとき */
+@media (min-width: 769px) {
+  .menu {
+    left: 10px;
+    width: 200px;
+  }
+
+  .menu ul {
+    flex-direction: column;
+  }
+}
+
+/* メニューアイコンのスタイル */
+.menu-icon {
+  font-size: 1.2rem;
+  color: white;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ログアウトボタンのスタイル */
+.logout-button {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
