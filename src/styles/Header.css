@@ -102,3 +102,28 @@
     flex-direction: column;
   }
 }
+
+/* メニューアイコンのスタイル */
+.menu-icon {
+  font-size: 1.2rem;
+  color: white;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ログアウトボタンのスタイル */
+.logout-button {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button:hover {
+  background-color: #555;
+  border-radius: 5px;
+}

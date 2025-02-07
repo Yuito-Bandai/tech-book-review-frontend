@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FaHome, FaBookOpen, FaBookmark, FaSignOutAlt } from "react-icons/fa"; // FaSignOutAltを追加
 import "../../styles/Header.css";
 
 interface HeaderProps {
@@ -24,10 +25,26 @@ const Header: React.FC<HeaderProps> = ({ onLogout }) => {
         </button>
         <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/reviews">Reviews</Link></li>
-            <li><Link to="/bookmark">Bookmark</Link></li>
-            <li><button onClick={onLogout}>Logout</button></li>
+            <li>
+              <Link to="/">
+                <FaHome className="menu-icon" /> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/reviews">
+                <FaBookOpen className="menu-icon" /> Reviews
+              </Link>
+            </li>
+            <li>
+              <Link to="/bookmark">
+                <FaBookmark className="menu-icon" /> Bookmark
+              </Link>
+            </li>
+            <li>
+              <button className="logout-button" onClick={onLogout}>
+                <FaSignOutAlt className="menu-icon" /> Logout
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
