@@ -9,6 +9,7 @@ const BookList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchTitle, setSearchTitle] = useState('');
   const [searchAuthor, setSearchAuthor] = useState('');
+  const defaultThumbnail = 'default-thumbnail.jpg';
 
   // 初期データの取得
   useEffect(() => {
@@ -92,7 +93,11 @@ const BookList: React.FC = () => {
                 <div className="book-description">
                   <p>{book.description_short ? book.description_short : '説明情報なし'}</p>
                 </div>
-                {book.thumbnail && <img src={book.thumbnail} alt={book.title} className="book-thumbnail" />}
+                <img
+                  src={book.thumbnail || defaultThumbnail}
+                  alt={book.title}
+                  className="book-thumbnail"
+                />
               </Link>
             </li>
           ))
